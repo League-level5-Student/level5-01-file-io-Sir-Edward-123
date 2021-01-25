@@ -1,5 +1,11 @@
 package _02_File_Encrypt_Decrypt;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 public class FileDecryptor {
 	/*
 	 * Decryption is the process of taking encoded or encrypted text or other data
@@ -19,4 +25,38 @@ public class FileDecryptor {
 	 * Create a program that opens the file created by FileEncryptor and decrypts
 	 * the message, then display it to the user in a JOptionPane.
 	 */
+	public static void main(String[] args) {
+		try {
+			FileReader reader = new FileReader("src/_02_File_Encrypt_Decrypt/writeFile.txt");
+			String decryptedMessage = "";
+			int shift = FileEncryptor.shift;
+			
+			int asciiValue = reader.read();
+			while(asciiValue != -1) {
+				if(asciiValue >= 97 && asciiValue <= 122) {
+					for(int j = 0; j < shift; j++) {
+						asciiValue--;
+						if(asciiValue < 97) {
+							asciiValue = 122;
+						}
+					}
+				} else if(asciiValue >= 65 && asciiValue <= 90) {
+					for(int j = 0; j < shift; j++) {
+						asciiValue--;
+						if(asciiValue < 65) {
+							asciiValue = 90;
+						}
+					}
+				}
+				decryptedMessage += Character.toString((char)asciiValue);
+				asciiValue = reader.read();
+			}
+			JOptionPane.showMessageDialog(null, "The decrypted message is:\n" + decryptedMessage);
+			reader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
