@@ -61,3 +61,6 @@ public class FileEncryptor {
 		}
 	}
 }
+
+
+//Copyright © 2019 Riley Zhu

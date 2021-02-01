@@ -60,3 +60,6 @@ public class FileDecryptor {
 		}
 	}
 }
+
+
+//Copyright © 2019 Riley Zhu

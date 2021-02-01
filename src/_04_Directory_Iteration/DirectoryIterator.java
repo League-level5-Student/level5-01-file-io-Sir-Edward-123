@@ -31,3 +31,6 @@ public class DirectoryIterator {
 		 */
 	}
 }
+
+
+//Copyright © 2019 Riley Zhu
